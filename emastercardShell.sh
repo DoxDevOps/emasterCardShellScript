@@ -1,4 +1,5 @@
 #!/bin/sh
+#!/usr/bin/expect
 
 #The following is the installation guide for E-mastercard
 
@@ -10,7 +11,7 @@ DIRECTORY="/var/www/emastercard-upgrade-automation"
 
 #The following is for new installation only
 
-#*******************MAY YOU CHECK THE CODE FROM HERE********************************
+#*******************START WITH CHECKING IF THE SYSTEM IS ALREADY INSTALLED ON A SITE********************************
 if [ ! -d "$DIRECTORY" ];
 then
     mkdir /var/www && chmod 777 /var/www
@@ -28,12 +29,17 @@ then
     ./setup.py  $DIRECTORY
 
     sudo docker-compose exec api initialize_database.sh
+#*******************ELSE IF THE SYSTEM IS ALREADY UPDATED THEN JUST UPDATE TO THE LATEST TAG********************************
 else
 
-echo "The project is already installed ... NOW preparing to update !!"
-git describe --tags $DIRECTORY
+      echo "The project is already installed ... NOW preparing to update !!"
+      git --git-dir=/var/www/emastercard-upgrade-automation/.git describe
       TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
       echo $TAG $DIRECTORY
-      git checkout $TAG -b latest $DIRECTORY
-      ./setup.py  $DIRECTORY
+      git --git-dir=/var/www/emastercard-upgrade-automation/.git checkout  $TAG -f
+      cd /var/www/emastercard-upgrade-automation/ | ./setup.py
+      set pass "123456"
+      expect "[sudo] password for adm1n: "
+      send "$pass"
+
 fi
