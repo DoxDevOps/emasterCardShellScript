@@ -24,9 +24,10 @@ then
     cd $DIRECTORY/api
     cp $DIRECTORY/api/api-config.yml.example $DIRECTORY/api/api-config.yml
     cp $DIRECTORY/api/migration-config.yml.example $DIRECTORY/api/migration-config.yml
-    ./setup.py  $DIRECTORY
+    d /var/www/emastercard-upgrade-automation/ | echo 123456 | sudo -S ./setup.py
 
     sudo docker-compose exec api initialize_database.sh
+    
 #*******************ELSE IF THE SYSTEM IS ALREADY UPDATED THEN JUST UPDATE TO THE LATEST TAG********************************
 else
 
