@@ -1,8 +1,6 @@
 #!/bin/sh
-#!/usr/bin/expect
-
+ 
 #The following is the installation guide for E-mastercard
-
 cd ~
 echo "Logging into Documents folder"
 #cd /var
@@ -34,12 +32,10 @@ else
 
       echo "The project is already installed ... NOW preparing to update !!"
       git --git-dir=/var/www/emastercard-upgrade-automation/.git describe
-      TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+      TAG=$(git  --git-dir=/var/www/emastercard-upgrade-automation/.git describe --tags `git rev-list --tags --max-count=1`)
       echo $TAG $DIRECTORY
       git --git-dir=/var/www/emastercard-upgrade-automation/.git checkout  $TAG -f
-      cd /var/www/emastercard-upgrade-automation/ | ./setup.py
-      set pass "123456"
-      expect "[sudo] password for adm1n: "
-      send "$pass"
 
+      cd /var/www/emastercard-upgrade-automation/ | echo 123456 | sudo -S ./setup.py
+      echo " THE SYSTEM HAS BEEN SUCCESSIFULLY UPDATED !! "
 fi
