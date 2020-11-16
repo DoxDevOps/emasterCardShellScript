@@ -5,8 +5,8 @@ This script aims at setting up a site with eMC. The idea is to have one script t
 
 The script can setup a new site or an existing one.
 
--- For a new site, the script creates all dirs and clones all relevant code into these dir
--- For an existing site, the script simply checkouts the latest tag
+1. For a new site, the script clones relevant code into system dirs
+2. For an existing site, the script simply checkouts the latest tag
 
 
   
