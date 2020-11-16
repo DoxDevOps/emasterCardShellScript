@@ -1,4 +1,4 @@
-# emasterCardShellScript
+# eMC Setup Script
 *This is a script for Emastercard Installation
 * It has all the steps involved in installing emastercard. the following are the parts
 
