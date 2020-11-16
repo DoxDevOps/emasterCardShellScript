@@ -1,10 +1,13 @@
 # eMC Setup Script
-*This is a script for Emastercard Installation
-* It has all the steps involved in installing emastercard. the following are the parts
+By Tiwonge Lwara
 
-  1. The Script checks if the system is already installed .
-     *If not, then the Script creates a drectory (www) where the emastercard will be clonned from gitHub.
-     *Then emastercard-automation-updagre will be clonned in the folder www. 
-  2. If the system is already installed on a site, The the script will upgrade the the system to a latest tag automatically.
+This script aims at setting up a site with eMC. The idea is to have one script that does all the steps an officer would do when setting up a site. Later this script (or parts of the script) will be added to a Pipeline to automate deploymnet.
+
+The script can setup a new site or an existing one.
+
+-- For a new site, the script creates all dirs and clones all relevant code into these dir
+-- For an existing site, the script simply checkouts the latest tag
+
+
   
      
